@@ -1,3 +1,3 @@
 
-// TODO: Implementiere ein Programm welches für drei Zahlen x, y, z welche in dieser Reihenfolge mit READ eingelesen
-// werden sollen x^y mod z berechnet. Das Ergebnis soll mit WRITE ausgegeben werden.
+// TODO: Implementiere ein Programm welches für y, N eingelesen Schlüssel in einer Schleife ein eingelesen
+// x mit x^y mod N verschlüsselt solang x != 0 ist.
