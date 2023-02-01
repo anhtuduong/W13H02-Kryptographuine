@@ -1,3 +1,69 @@
 
 // TODO: Implementiere ein Programm welches für y, N eingelesen Schlüssel in einer Schleife ein eingelesen
 // x mit x^y mod N verschlüsselt solang x != 0 ist.
+
+//Read the values y,N (in this order) with READ.
+READ
+STORE 2
+READ
+STORE 3
+
+// Read a new value x, which is to be encrypted.
+read_loop:
+    READ
+    STORE 0
+
+    // If this is 0, exit the program.
+    CONST 0
+    LOAD 0
+    EQ
+    FJUMP end
+
+    // x^y mod N and output the result with WRITE.
+    CONST 1
+    STORE 1
+    STORE 4
+    STORE 5
+
+    // Calculate x^y mod N
+    power_loop:
+        LOAD 2
+        MOD
+        CONST 0
+        NOT
+        FJUMP power_end
+
+        STORE 6
+        LOAD 4
+        LOAD 0
+        MUL
+        STORE 4
+        LOAD 5
+        LOAD 6
+        MUL
+        STORE 5
+        LOAD 2
+        CONST 2
+        DIV
+        STORE 2
+
+    power_end:
+        LOAD 1
+        LOAD 4
+        MUL
+        STORE 1
+        LOAD 2
+        CONST 1
+        SUB
+        STORE 2
+
+        JUMP power_loop
+
+    // Output the result
+    LOAD 1
+    WRITE
+
+    JUMP read_loop
+
+end:
+HALT
