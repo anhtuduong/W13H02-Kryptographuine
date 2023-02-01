@@ -2,3 +2,101 @@
 // TODO: Implementiere ein Programm welches erst eine Zahl e mit READ einliest, dann eine Zahl phi und
 // dann eine Zahl d berechnet für welche gilt (d * e) mod phi == 1. Hierfür bietet sich der erweiterte euklidische
 // Algorithmus an. Am Ende soll d mit WRITE ausgegeben werden.
+
+// int rPrior, r, sPrior, s, tPrior, t, q, tmp;
+ALLOC 7
+
+// rPrior = read();
+READ
+STORE 0
+
+// r = read();
+READ
+STORE 1
+
+// sPrior = 1;
+CONST 1
+STORE 2
+
+// s = 0;
+CONST 0
+STORE 3
+
+// tPrior = 0;
+CONST 0
+STORE 4
+
+// t = 1;
+CONST 1
+STORE 5
+
+// while (r != 0)
+while_cond:
+    LOAD 1
+    CONST 0
+    EQ
+    FJUMP while_end
+
+    // q = rPrior / r;
+    LOAD 0
+    LOAD 1
+    DIV
+    STORE 6
+
+    // tmp = r;
+    LOAD 1
+    STORE 7
+
+    // r = rPrior - q * r;
+    LOAD 0
+    LOAD 6
+    LOAD 1
+    MUL
+    SUB
+    STORE 1
+
+    // rPrior = tmp;
+    LOAD 7
+    STORE 0
+
+    // tmp = s;
+    LOAD 3
+    STORE 7
+
+    // s = sPrior - q * s;
+    LOAD 2
+    LOAD 6
+    LOAD 3
+    MUL
+    SUB
+    STORE 3
+
+    // sPrior = tmp;
+    LOAD 7
+    STORE 2
+
+    // tmp = t;
+    LOAD 5
+    STORE 7
+
+    // t = tPrior - q * t;
+    LOAD 4
+    LOAD 6
+    LOAD 5
+    MUL
+    SUB
+    STORE 5
+
+    // tPrior = tmp;
+    LOAD 7
+    STORE 4
+
+    JUMP while_cond
+
+while_end:
+
+// write(sPrior);
+LOAD 2
+WRITE
+
+HALT
